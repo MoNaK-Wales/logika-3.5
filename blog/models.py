@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 # Create your models here.
 class Post(models.Model):
@@ -9,6 +10,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def published_recently(self):
+        return self.published_date >= dt.datetime.now() - dt.timedelta(days=7)
     
 
 class Author(models.Model):
